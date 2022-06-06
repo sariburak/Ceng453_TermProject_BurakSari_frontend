@@ -1,8 +1,6 @@
 # Ceng453_TermProject_BurakSari_frontend
 
 **TODO:**
-* Login and register pages are done
-* Game logic is implemented
 * Frontend for the game is empty :')
 * When game over, calculate the results and save the results via the API
 
@@ -17,4 +15,6 @@
 * Currently, username is between 4 and 20 letters, and email is between 10 and 30 letters. We could bump those up, an
   @gmail.com already takes up 10 letters. NOTE: Do not forget to also increment the username field in the Game table.
 
-**DONE:**
+**DONE:*** 
+* Login and register pages
+* Game logic (Game is fully playable on command line)
