@@ -1,12 +1,9 @@
-# Ceng453_TermProject_Group15_frontend
+# Ceng453_TermProject_BurakSari_frontend
 
 **TODO:**
-
-* Create a login page and handle user authentication via the API
-* Create a forgot password page
-* Create the main menu
-* Create the game main page
-* Create game logic
+* Login and register pages are done
+* Game logic is implemented
+* Frontend for the game is empty :')
 * When game over, calculate the results and save the results via the API
 
 **NOTES (Copied from the backend repo):**
