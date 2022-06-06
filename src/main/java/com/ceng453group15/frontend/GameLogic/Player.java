@@ -28,9 +28,7 @@ public abstract class Player{
         playerState.throwDice();
     }
 
-    //TODO: this method should only be callable after throwDiceAndMove
     public void buyProperty() {
-        //TODO: Handle the log for unsuccessful purchase
         playerState.buyProperty();
     }
 

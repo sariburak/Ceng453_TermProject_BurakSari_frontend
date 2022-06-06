@@ -1,6 +1,7 @@
 package com.ceng453group15.frontend.GameLogic.TileActions;
 
 import com.ceng453group15.frontend.GameLogic.Player;
+import com.ceng453group15.frontend.GameLogic.PlayerStates.WaitState;
 import com.ceng453group15.frontend.GameLogic.Property;
 import com.ceng453group15.frontend.GameLogic.Tile;
 
@@ -8,11 +9,6 @@ import com.ceng453group15.frontend.GameLogic.Tile;
 public class PayRentAction implements TileAction {
     private Player owner;
     private Tile tile;
-    public PayRentAction(Player owner){
-        this.owner = owner;
-        this.tile = null;
-    }
-
     public PayRentAction(Tile tile, Player owner){
         this.tile = tile;
         this.owner = owner;
@@ -21,9 +17,12 @@ public class PayRentAction implements TileAction {
     @Override
     public void execute(Player player) {
         //TODO: check if this cast fails
+
         Property tmp = (Property) tile;
         int price = tmp.getPrice();
         player.decreaseBudget(price);
         owner.increaseBudget(price);
+
+        player.setPlayerState(new WaitState(player));
     }
 }

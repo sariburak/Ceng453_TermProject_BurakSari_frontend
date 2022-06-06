@@ -15,6 +15,6 @@ public class Board {
     }
 
     public static void executeTileAction(Player player) {
-        TileAction defaultAction = Board.tiles.get(player.getCurrent_pos()).defaultAction;
+        Board.tiles.get(player.getCurrent_pos()).executeDefaultAction(player);
     }
 }

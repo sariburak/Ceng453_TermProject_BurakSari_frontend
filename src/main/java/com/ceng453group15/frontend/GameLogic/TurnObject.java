@@ -15,6 +15,7 @@ public class TurnObject {
         activePlayer = players.get(0);
     }
 
+    //Passes the turn to the next player
     public void nextTurn(){
         //TODO: Should be called unless all players are in jail or wait state
         if(!(activePlayer.getPlayerState() instanceof WaitState)){

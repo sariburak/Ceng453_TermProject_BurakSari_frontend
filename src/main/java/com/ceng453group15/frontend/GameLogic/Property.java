@@ -1,5 +1,7 @@
 package com.ceng453group15.frontend.GameLogic;
 
+import com.ceng453group15.frontend.GameLogic.TileActions.PayRentAction;
+
 //Tiles that can be bought are Properties
 public class Property extends Tile {
     private int price;
@@ -11,8 +13,6 @@ public class Property extends Tile {
         this.price = price;
         this.type = type;
         this.owner = null;
-        //TODO: may need to add more action later
-        defaultAction = null;
     }
 
     @Override
@@ -20,6 +20,9 @@ public class Property extends Tile {
         if(owner == null && player.getBudget() > price){
             player.decreaseBudget(price);
             owner = player;
+            setDefaultAction(new PayRentAction(this, player));
+        }else{
+            System.out.println("Can not buy this property!");
         }
     }
 
