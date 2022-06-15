@@ -22,10 +22,15 @@ public class JailState implements PlayerState{
     }
 
     public void getThroughOneTurnSentence(){
-        remainingTurnCount--;
         if(remainingTurnCount <= 0){
             //Can get out of jail next turn
             player.setPlayerState(new WaitState(player));
+            return;
         }
+        remainingTurnCount--;
+    }
+
+    public int getRemainingTurnCount(){
+        return remainingTurnCount;
     }
 }
