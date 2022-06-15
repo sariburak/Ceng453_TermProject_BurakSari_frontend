@@ -20,7 +20,7 @@ public class OnTurnState implements PlayerState {
         //random number between 1-6
         int dice = rand.nextInt(6) + 1;
 
-        int new_pos = (player.getCurrent_pos() + dice) % TILE_COUNT;
+        int new_pos = (player.getCurrent_pos() + dice) % Board.getTilesCount();
 
         //Update player position
         player.setCurrent_pos(new_pos);

@@ -19,4 +19,12 @@ public class Board {
     public static void executeTileAction(Player player) {
         Board.tiles.get(player.getCurrent_pos()).executeDefaultAction(player);
     }
+
+    public static int getTilesCount(){
+        return tiles.size();
+    }
+
+    public static ArrayList<Tile> getTiles(){
+        return tiles;
+    }
 }
