@@ -12,7 +12,4 @@ public class PlayerTest {
         assertTrue(player.getBudget() == 1500);
         assertTrue(player.getCurrent_pos() == 0);
     }
-
-
-
 }

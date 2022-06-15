@@ -10,9 +10,10 @@ import java.util.List;
 public class TurnObject {
     private List<Player> players;
     private Player activePlayer;
-    TurnObject(List<Player> players){
+    public TurnObject(List<Player> players){
         this.players = new ArrayList<>(players);
         activePlayer = players.get(0);
+        activePlayer.setPlayerState(new OnTurnState(activePlayer));
     }
 
     //Passes the turn to the next player
@@ -50,7 +51,7 @@ public class TurnObject {
         activePlayer.setPlayerState(new OnTurnState(activePlayer));
     }
 
-
-
-
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
 }
