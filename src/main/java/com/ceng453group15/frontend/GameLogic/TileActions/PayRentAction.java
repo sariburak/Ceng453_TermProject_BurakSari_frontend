@@ -7,8 +7,8 @@ import com.ceng453group15.frontend.GameLogic.Tile;
 
 //Player landed on an already bought Property
 public class PayRentAction implements TileAction {
-    private Player owner;
-    private Property property;
+    private final Player owner;
+    private final Property property;
     public PayRentAction(Property property, Player owner){
         this.property = property;
         this.owner = owner;
@@ -25,4 +25,9 @@ public class PayRentAction implements TileAction {
 
         player.setPlayerState(new WaitState(player));
     }
+
+    public Player getOwner() {
+        return owner;
+    }
+
 }

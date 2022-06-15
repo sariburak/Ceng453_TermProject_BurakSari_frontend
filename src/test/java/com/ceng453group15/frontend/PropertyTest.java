@@ -3,6 +3,7 @@ package com.ceng453group15.frontend;
 import com.ceng453group15.frontend.GameLogic.Player;
 import com.ceng453group15.frontend.GameLogic.Property;
 import com.ceng453group15.frontend.GameLogic.PropertyType;
+import com.ceng453group15.frontend.GameLogic.TileActions.PayRentAction;
 import org.junit.jupiter.api.Test;
 
 import static com.ceng453group15.frontend.GameLogic.GameConstants.DEFAULT_PLAYER_BUDGET;
@@ -22,7 +23,10 @@ public class PropertyTest {
 
        property.getSold(player);
 
-        assertTrue(property.getOwner() == player && player.getBudget() == DEFAULT_PLAYER_BUDGET - property.getPrice());
+        assertTrue(property.getDefaultAction() instanceof PayRentAction && player.getBudget() == DEFAULT_PLAYER_BUDGET - property.getPrice());
+
+        PayRentAction payRentAction = (PayRentAction) property.getDefaultAction();
+        assertTrue(payRentAction.getOwner() == player);
     }
 
 

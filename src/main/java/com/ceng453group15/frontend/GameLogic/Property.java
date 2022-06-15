@@ -6,19 +6,16 @@ import com.ceng453group15.frontend.GameLogic.TileActions.PayRentAction;
 public class Property extends Tile {
     private int price;
     //if owner == null, not bought yet
-    private Player owner;
     //regular or ferry
     private PropertyType type;
     public Property(int price, PropertyType type){
         this.price = price;
         this.type = type;
-        this.owner = null;
     }
 
     public void getSold(Player player) {
-        if(owner == null && player.getBudget() > price){
+        if(!(defaultAction instanceof PayRentAction) && player.getBudget() > price){
             player.decreaseBudget(price);
-            owner = player;
             setDefaultAction(new PayRentAction(this, player));
         }else{
             System.out.println("Can not buy this property!");
@@ -39,14 +36,5 @@ public class Property extends Tile {
 
     public void setType(PropertyType type) {
         this.type = type;
-    }
-
-    public Player getOwner(){
-        return this.owner;
-    }
-
-    public void setOwner(Player player){
-        //Sets owner without any money exchange
-        this.owner = player;
     }
 }
