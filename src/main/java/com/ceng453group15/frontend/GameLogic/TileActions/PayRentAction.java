@@ -8,20 +8,20 @@ import com.ceng453group15.frontend.GameLogic.Tile;
 //Player landed on an already bought Property
 public class PayRentAction implements TileAction {
     private Player owner;
-    private Tile tile;
-    public PayRentAction(Tile tile, Player owner){
-        this.tile = tile;
+    private Property property;
+    public PayRentAction(Property property, Player owner){
+        this.property = property;
         this.owner = owner;
     }
 
     @Override
     public void execute(Player player) {
-        //TODO: check if this cast fails
 
-        Property tmp = (Property) tile;
-        int price = tmp.getPrice();
-        player.decreaseBudget(price);
-        owner.increaseBudget(price);
+        //TODO: no need for floating numbers, right?
+        //TODO: add case for ferries
+        int rent = (int) (property.getPrice() * 0.1);
+        player.decreaseBudget(rent);
+        owner.increaseBudget(rent);
 
         player.setPlayerState(new WaitState(player));
     }

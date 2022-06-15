@@ -15,7 +15,6 @@ public class Property extends Tile {
         this.owner = null;
     }
 
-    @Override
     public void getSold(Player player) {
         if(owner == null && player.getBudget() > price){
             player.decreaseBudget(price);
@@ -32,5 +31,22 @@ public class Property extends Tile {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public PropertyType getType() {
+        return type;
+    }
+
+    public void setType(PropertyType type) {
+        this.type = type;
+    }
+
+    public Player getOwner(){
+        return this.owner;
+    }
+
+    public void setOwner(Player player){
+        //Sets owner without any money exchange
+        this.owner = player;
     }
 }

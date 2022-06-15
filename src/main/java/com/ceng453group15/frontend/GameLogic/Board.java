@@ -11,7 +11,9 @@ public class Board {
         Board.tiles = tiles;
     }
     public static void sellProperty(Player player) {
-        Board.tiles.get(player.getCurrent_pos()).getSold(player);
+        //TODO:Check if this cast fails
+        Property property = (Property) Board.tiles.get(player.getCurrent_pos());
+        property.getSold(player);
     }
 
     public static void executeTileAction(Player player) {

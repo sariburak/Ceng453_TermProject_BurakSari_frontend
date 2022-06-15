@@ -8,9 +8,10 @@ import com.ceng453group15.frontend.GameLogic.PlayerStates.WaitState;
 
 import java.util.Random;
 
+import static com.ceng453group15.frontend.GameLogic.GameConstants.DEFAULT_PLAYER_BUDGET;
 import static com.ceng453group15.frontend.GameLogic.GameConstants.TILE_COUNT;
 
-public abstract class Player{
+public class Player{
     private int current_pos;
 
     private int budget;
@@ -19,7 +20,7 @@ public abstract class Player{
 
     public  Player(){
         current_pos = 0;
-        budget = 1500;
+        budget = DEFAULT_PLAYER_BUDGET;
         //It's not any of the players' turn as default
         playerState = new WaitState(this);
     }

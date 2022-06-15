@@ -4,7 +4,7 @@ import com.ceng453group15.frontend.GameLogic.TileActions.TileAction;
 
 import java.util.Objects;
 
-public abstract class Tile {
+public class Tile {
     protected TileAction defaultAction;
 
     public Tile(){
@@ -27,5 +27,4 @@ public abstract class Tile {
         this.defaultAction = defaultAction;
     }
 
-    public abstract void getSold(Player player);
 }
