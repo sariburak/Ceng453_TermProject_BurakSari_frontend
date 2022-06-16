@@ -1,0 +1,24 @@
+.gridPane{
+    -fx-background-color:  yellowgreen;
+    -fx-background-image: url("../images/monopoly-logo.png");
+    -fx-background-size: 62%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.pane {
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+}
+
+#goToJail{
+    -fx-background-image: url("../images/gotojail.png");
+    -fx-background-size: contain;
+}
+
+#jail{
+    -fx-background-image: url("../images/jail.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

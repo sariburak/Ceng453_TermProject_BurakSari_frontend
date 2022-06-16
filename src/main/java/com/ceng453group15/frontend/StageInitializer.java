@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
-    @Value("classpath:/registerPage.fxml")
+    @Value("classpath:/game.fxml")
     private Resource mainMenuResource;
     private String applicationTitle;
     private ApplicationContext applicationContext;
@@ -29,11 +29,11 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
     public void onApplicationEvent(StageReadyEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(mainMenuResource.getURL());
-            fxmlLoader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+            //fxmlLoader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
             Parent parent = fxmlLoader.load();
 
             Stage stage = event.getStage();
-            stage.setScene(new Scene(parent, 800, 600));
+            stage.setScene(new Scene(parent));
             stage.setTitle(applicationTitle);
             stage.show();
         } catch (IOException e) {
