@@ -22,3 +22,9 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+
+.bold{
+    -fx-font-weight: 900;
+    -fx-font-family: Dialog;
+    -fx-font-size: 24px;
+}
