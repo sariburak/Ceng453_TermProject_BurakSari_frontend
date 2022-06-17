@@ -89,6 +89,7 @@ public class GameController {
     public void mainPaneClicked(MouseEvent mouseEvent) {
         System.out.println("Mouse event on main pane is triggered");
 
+        changeDiceImage(dice1, 5);
         //Below code is a demonstration of how to change city names
         /*for(Node node: pane04.getChildren()){
             Text text = (Text) node;
