@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -43,7 +44,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="set-background">
                <children>
-                  <GridPane prefHeight="800.0" prefWidth="800.0" styleClass="gridPane" stylesheets="@css/game.css">
+                  <GridPane fx:id="gridPane" onMouseClicked="#mainPaneClicked" prefHeight="800.0" prefWidth="800.0" styleClass="gridPane" stylesheets="@css/game.css">
                      <columnConstraints>
                         <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
@@ -59,6 +60,80 @@
                         <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="NEVER" />
                      </rowConstraints>
                      <children>
+                        <Pane fx:id="start" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="4">
+                           <children>
+                              <Text layoutX="46.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="Start" />
+                              <Circle fx:id="player1" fill="#ae0a0a" layoutX="80.0" layoutY="80.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fx:id="player2" fill="#399a13" layoutX="80.0" layoutY="80.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city1" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="3">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City1" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city2" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="2">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City2" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city3" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="1">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City3" />
+                           </children>
+                        </Pane>
+                        <Pane id="jail" fx:id="jail" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@css/game.css" />
+                        <Pane fx:id="city4" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="1">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City4" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city5" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="2">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City5" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city6" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="3">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City6" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city7" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4">
+                           <children>
+                              <Text layoutX="35.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City7" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city8" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City8" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city9" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <children>
+                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City9" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city10" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <children>
+                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City10" />
+                           </children>
+                        </Pane>
+                        <Pane id="goToJail" fx:id="gotojail" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <Pane fx:id="city11" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <children>
+                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City11" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city12" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <children>
+                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City12" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="city13" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <children>
+                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City13" />
+                           </children>
+                        </Pane>
                         <ImageView fx:id="dice1" fitHeight="122.0" fitWidth="117.0" onMouseClicked="#throwDices" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
                               <Image url="@images/Dice1.png" />
@@ -69,78 +144,6 @@
                               <Image url="@images/Dice2.png" />
                            </image>
                         </ImageView>
-                        <Pane id="jail" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@css/game.css" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="1">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City3" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="2">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City2" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="3">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City1" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pane04" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.rowIndex="4">
-                           <children>
-                              <Text layoutX="46.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="Start" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="1">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City4" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="2">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City5" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="3">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City6" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4">
-                           <children>
-                              <Text layoutX="35.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City7" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City8" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                           <children>
-                              <Text layoutX="45.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City9" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                           <children>
-                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City10" />
-                           </children>
-                        </Pane>
-                        <Pane id="goToJail" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                           <children>
-                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City11" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                           <children>
-                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City12" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <children>
-                              <Text layoutX="37.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bold" text="City13" />
-                           </children>
-                        </Pane>
                      </children>
                   </GridPane>
                </children>
