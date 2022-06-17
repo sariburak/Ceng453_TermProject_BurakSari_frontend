@@ -16,7 +16,7 @@ public class DiceThrownState implements PlayerState {
     }
 
     @Override
-    public void buyProperty() {
-        Board.sellProperty(player);
+    public boolean buyProperty() {
+        return Board.sellProperty(player);
     }
 }

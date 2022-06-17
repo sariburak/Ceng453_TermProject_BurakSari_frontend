@@ -10,10 +10,15 @@ public class Board {
     public static void initializeBoard(ArrayList<Tile> tiles){
         Board.tiles = tiles;
     }
-    public static void sellProperty(Player player) {
+    public static boolean sellProperty(Player player) {
         //TODO:Check if this cast fails
-        Property property = (Property) Board.tiles.get(player.getCurrent_pos());
-        property.getSold(player);
+        if(Board.tiles.get(player.getCurrent_pos()) instanceof Property){
+            Property property = (Property) Board.tiles.get(player.getCurrent_pos());
+            return property.getSold(player);
+        }else{
+            return false;
+        }
+
     }
 
     public static void executeTileAction(Player player) {

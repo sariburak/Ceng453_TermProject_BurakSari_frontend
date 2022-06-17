@@ -15,7 +15,10 @@ public class OnTurnState implements PlayerState {
     }
     @Override
     public void move(int amount) {
-
+        if(amount + player.getCurrent_pos() >= Board.getTiles().size()){
+            //Passed the starting point, gains 100 coins
+            player.increaseBudget(100);
+        }
         int new_pos = (player.getCurrent_pos() + amount) % Board.getTilesCount();
 
         //Update player position
@@ -27,7 +30,8 @@ public class OnTurnState implements PlayerState {
     }
 
     @Override
-    public void buyProperty() {
+    public boolean buyProperty() {
         System.out.println("Can not buy yet!");
+        return false;
     }
 }

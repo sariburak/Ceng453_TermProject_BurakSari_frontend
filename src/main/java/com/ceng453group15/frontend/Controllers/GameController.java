@@ -27,6 +27,7 @@ import javafx.util.Duration;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameController {
@@ -171,7 +172,8 @@ public class GameController {
 
     private void movePlayer(Circle player, int destination){
         //TODO: destination should be smaller than 16
-        tiles[destination].getChildren().add(player);
+        if(!Objects.equals(player.getParent(), tiles[destination]))
+            tiles[destination].getChildren().add(player);
     }
 
     private Text getTextFromPane(Pane pane){
@@ -193,9 +195,11 @@ public class GameController {
 
     @FXML
     public void buyProperty(ActionEvent event) {
-        TurnObject.getActivePlayer().buyProperty();
+        boolean success = TurnObject.getActivePlayer().buyProperty();
         updateBudget();
-        tiles[TurnObject.getActivePlayer().getCurrent_pos()].getStyleClass().add("player"+TurnObject.activePlayerIndex());
+
+        if(success)
+            tiles[TurnObject.getActivePlayer().getCurrent_pos()].getStyleClass().add("player"+TurnObject.activePlayerIndex());
     }
 
     @FXML

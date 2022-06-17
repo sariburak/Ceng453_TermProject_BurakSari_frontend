@@ -18,8 +18,9 @@ public class JailState implements PlayerState{
     }
 
     @Override
-    public void buyProperty() {
+    public boolean buyProperty() {
         System.out.println("You are in jail");
+        return false;
     }
 
     public void getThroughOneTurnSentence(){

@@ -4,5 +4,5 @@ public interface PlayerState {
 
     public abstract void move(int amount);
 
-    public abstract void buyProperty();
+    public abstract boolean buyProperty();
 }

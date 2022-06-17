@@ -23,8 +23,8 @@ public class Player{
         playerState.move(amount);
     }
 
-    public void buyProperty() {
-        playerState.buyProperty();
+    public boolean buyProperty() {
+        return playerState.buyProperty();
     }
 
     public void increaseBudget(int increase){

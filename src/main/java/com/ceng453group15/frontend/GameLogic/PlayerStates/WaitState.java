@@ -14,7 +14,8 @@ public class WaitState implements PlayerState {
     }
 
     @Override
-    public void buyProperty() {
+    public boolean buyProperty() {
         System.out.println("Not your turn yet");
+        return false;
     }
 }

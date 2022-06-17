@@ -5,4 +5,6 @@ public class GameConstants {
     public static final int TAX_AMOUNT = 50;
     public static final int STARTING_POINT_INCOME = 100;
     public static final int DEFAULT_PLAYER_BUDGET = 1500;
+
+    public static final int JAIL_TILE_POS = 4;
 }

@@ -14,13 +14,15 @@ public class Property extends Tile {
         this.type = type;
     }
 
-    public void getSold(Player player) {
+    public boolean getSold(Player player) {
         if(!(defaultAction instanceof PayRentAction) && player.getBudget() > price){
             player.decreaseBudget(price);
             setDefaultAction(new PayRentAction(this, player));
             player.setPlayerState(new WaitState(player));
+            return true;
         }else{
             System.out.println("Can not buy this property!");
+            return false;
         }
     }
 
