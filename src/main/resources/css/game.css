@@ -1,9 +1,12 @@
 .gridPane{
-    -fx-background-color:  yellowgreen;
     -fx-background-image: url("../images/monopoly-logo.png");
     -fx-background-size: 62%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+}
+
+.set-background{
+    -fx-background-color:  darkolivegreen;
 }
 
 .pane {
