@@ -1,5 +1,6 @@
 package com.ceng453group15.frontend.GameLogic;
 
+import com.ceng453group15.frontend.GameLogic.PlayerStates.WaitState;
 import com.ceng453group15.frontend.GameLogic.TileActions.PayRentAction;
 
 //Tiles that can be bought are Properties
@@ -17,6 +18,7 @@ public class Property extends Tile {
         if(!(defaultAction instanceof PayRentAction) && player.getBudget() > price){
             player.decreaseBudget(price);
             setDefaultAction(new PayRentAction(this, player));
+            player.setPlayerState(new WaitState(player));
         }else{
             System.out.println("Can not buy this property!");
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -144,6 +145,8 @@
                               <Image url="@images/Dice2.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="buyPropertyBtn" mnemonicParsing="false" onAction="#buyProperty" text="Buy Property" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="skipBtn" mnemonicParsing="false" onAction="#skipTurn" text="Skip" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
                      </children>
                   </GridPane>
                </children>

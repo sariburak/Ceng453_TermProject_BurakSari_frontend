@@ -2,9 +2,15 @@ package com.ceng453group15.frontend.Controllers;
 
 import com.ceng453group15.frontend.Game;
 import com.ceng453group15.frontend.GameLogic.Player;
+import com.ceng453group15.frontend.GameLogic.PlayerStates.DiceThrownState;
+import com.ceng453group15.frontend.GameLogic.PlayerStates.JailState;
 import com.ceng453group15.frontend.GameLogic.PlayerStates.OnTurnState;
+import com.ceng453group15.frontend.GameLogic.PlayerStates.WaitState;
 import com.ceng453group15.frontend.GameLogic.TurnObject;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.stage.Popup;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -16,8 +22,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.Random;
 
@@ -72,6 +80,10 @@ public class GameController {
     public Pane city12;
     @FXML
     public Pane city13;
+    @FXML
+    public Button buyPropertyBtn;
+    @FXML
+    public Button skipBtn;
 
     private Pane[] tiles;
 
@@ -116,6 +128,7 @@ public class GameController {
         budgets = new Text[2];
         budgets[0] = player1Budget;
         budgets[1] = player2Budget;
+        budgets[0].bind
     }
 
     @FXML
@@ -133,11 +146,22 @@ public class GameController {
         changeDiceImage(dice1, dice1Top);
         changeDiceImage(dice2, dice2Top);
         System.out.println("Real dice result: " + dice1Top + ", " + dice2Top);
-        TurnObject.getActivePlayer().move(dice1Top + dice2Top);
-        movePlayer(players[TurnObject.activePlayerIndex()], TurnObject.getActivePlayer().getCurrent_pos());
+
+        if(TurnObject.getActivePlayer().getPlayerState() instanceof DiceThrownState)
+                TurnObject.nextTurn();
+
+        if(TurnObject.getActivePlayer().getPlayerState() instanceof WaitState || TurnObject.getActivePlayer().getPlayerState() instanceof JailState)
+            TurnObject.nextTurn();
+
+        if(TurnObject.getActivePlayer().getPlayerState() instanceof OnTurnState){
+            TurnObject.getActivePlayer().move(dice1Top + dice2Top);
+            movePlayer(players[TurnObject.activePlayerIndex()], TurnObject.getActivePlayer().getCurrent_pos());
+        }
+
 
         budgets[TurnObject.activePlayerIndex()].setText(String.valueOf(TurnObject.getActivePlayer().getBudget()));
-        TurnObject.nextTurn();
+
+
     }
 
     private void changeDiceImage(ImageView dice, int top){
@@ -167,6 +191,17 @@ public class GameController {
     private void setPlayer2Budget(int budget){
         player2Budget.setText(String.valueOf(budget));
     }
+
+    @FXML
+    public void buyProperty(ActionEvent event) {
+        TurnObject.getActivePlayer().buyProperty();
+    }
+
+    @FXML
+    public void skipTurn(ActionEvent event) {
+        TurnObject.nextTurn();
+    }
+
     private class DiceAnimation {
         private TranslateTransition translateTransition;
         private RotateTransition rotateTransition;
