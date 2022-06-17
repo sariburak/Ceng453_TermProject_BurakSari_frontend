@@ -1,22 +1,25 @@
 package com.ceng453group15.frontend.Controllers;
 
-import com.ceng453group15.frontend.DiceAnimation;
 import com.ceng453group15.frontend.Game;
+import com.ceng453group15.frontend.GameLogic.Player;
+import com.ceng453group15.frontend.GameLogic.PlayerStates.OnTurnState;
+import com.ceng453group15.frontend.GameLogic.TurnObject;
 import javafx.animation.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Random;
 
 public class GameController {
     private final int TILE_COUNT = 16;
@@ -72,7 +75,13 @@ public class GameController {
 
     private Pane[] tiles;
 
+    private Circle[] players;
+    private Text[] budgets;
+
     private Game game;
+
+    private final int playerCount = 2;
+
 
     public GameController(){
         System.out.println("Constructor called");
@@ -99,32 +108,41 @@ public class GameController {
         text.setText("Pay Tax");
         text.setLayoutX(45);
         text.setLayoutY(36);
-    }
 
-    public void mainPaneClicked(MouseEvent mouseEvent) {
-        System.out.println("Mouse event on main pane is triggered");
+        players = new Circle[2];
+        players[0] = player1;
+        players[1] = player2;
 
-        changeDiceImage(dice1, 5);
-        //Below code is a demonstration of how to change city names
-        /*for(Node node: pane04.getChildren()){
-            Text text = (Text) node;
-            System.out.println(text.getText());
-            text.setText("Changed");
-            text.setLayoutX(pane04.getLayoutX() + (pane04.getWidth() - text.getLayoutBounds().getWidth())/2);
-        }*/
+        budgets = new Text[2];
+        budgets[0] = player1Budget;
+        budgets[1] = player2Budget;
     }
 
     @FXML
     public void throwDices(){
-        DiceAnimation diceAnimation = new DiceAnimation(300f, 300f, dice1);
-        DiceAnimation diceAnimation1 = new DiceAnimation(300f, 150f, dice2);
+        DiceAnimation diceAnimation = new DiceAnimation(300f, 300f, dice1, false);
+        DiceAnimation diceAnimation1 = new DiceAnimation(300f, 150f, dice2, true);
         diceAnimation.play();
         diceAnimation1.play();
     }
 
+    public void rollRealDices(){
+        Random rand = new Random();
+        int dice1Top = 1 + rand.nextInt(6);
+        int dice2Top = 1 + rand.nextInt(6);
+        changeDiceImage(dice1, dice1Top);
+        changeDiceImage(dice2, dice2Top);
+        System.out.println("Real dice result: " + dice1Top + ", " + dice2Top);
+        TurnObject.getActivePlayer().move(dice1Top + dice2Top);
+        movePlayer(players[TurnObject.activePlayerIndex()], TurnObject.getActivePlayer().getCurrent_pos());
+
+        budgets[TurnObject.activePlayerIndex()].setText(String.valueOf(TurnObject.getActivePlayer().getBudget()));
+        TurnObject.nextTurn();
+    }
+
     private void changeDiceImage(ImageView dice, int top){
         File f = new File("src/main/resources/images/Dice" + top + ".png");
-        System.out.println(f.toURI().toString());
+        //System.out.println(f.toURI().toString());
         dice.setImage(new Image(f.toURI().toString()));
     }
 
@@ -149,4 +167,79 @@ public class GameController {
     private void setPlayer2Budget(int budget){
         player2Budget.setText(String.valueOf(budget));
     }
+    private class DiceAnimation {
+        private TranslateTransition translateTransition;
+        private RotateTransition rotateTransition;
+        private ParallelTransition parallelTransition;
+
+        private ImageView dice;
+
+        private Roller clock;
+
+        private boolean activateRealDice;
+        public DiceAnimation(double byX, double byY, ImageView dice, boolean activateRealDice){
+            Duration duration = Duration.millis(500f);
+            translateTransition = new TranslateTransition(duration, dice);
+            translateTransition.setByX(byX);
+            translateTransition.setByY(byY);
+            translateTransition.setCycleCount(2);
+            translateTransition.setAutoReverse(true);
+
+            rotateTransition = new RotateTransition(duration, dice);
+            rotateTransition.setCycleCount(2);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setAutoReverse(true);
+
+            parallelTransition = new ParallelTransition(translateTransition, rotateTransition);
+
+            this.dice = dice;
+            clock = new Roller();
+
+            this.activateRealDice = activateRealDice;
+        }
+
+        public void play(){
+            parallelTransition.play();
+            clock.start();
+
+            parallelTransition.statusProperty().addListener(new ChangeListener<Animation.Status>() {
+                                                                @Override
+                                                                public void changed(ObservableValue<? extends Animation.Status> observableValue, Animation.Status status, Animation.Status t1) {
+                                                                    if(t1 == Animation.Status.STOPPED){
+                                                                        clock.stop();
+                                                                        if(activateRealDice)
+                                                                            rollRealDices();
+                                                                    }
+                                                                }
+                                                            }
+
+            );
+        }
+
+        private class Roller extends AnimationTimer{
+            private long FRAMES_PER_SEC = 20L;
+            private long INTERVAL = 1000000000L / FRAMES_PER_SEC;
+
+            private long last = 0;
+            private int lastR;
+            @Override
+            public void handle(long now) {
+                if(now - last > INTERVAL){
+                    lastR = 2 + (int)(Math.random() * 5);
+                    //System.out.println("Dice image changed!" + lastR);
+                    changeDiceImage((ImageView) dice, lastR);
+                    last = now;
+                }
+            }
+
+            public int getLastR() {
+                return lastR;
+            }
+        }
+
+        public int diceResult(){
+            return clock.getLastR();
+        }
+    }
+
 }

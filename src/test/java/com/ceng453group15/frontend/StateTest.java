@@ -21,7 +21,7 @@ public class StateTest {
         Player player = new Player();
         JailState state = new JailState(player);
 
-        state.throwDice();
+        state.move(5);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class StateTest {
         Player player = new Player();
         DiceThrownState state = new DiceThrownState(player);
 
-        state.throwDice();
+        state.move(5);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class StateTest {
 
         OnTurnState state = new OnTurnState(player);
 
-        state.throwDice();
+        state.move(5);
 
         assertTrue(player.getBudget() == DEFAULT_PLAYER_BUDGET - TAX_AMOUNT);
     }

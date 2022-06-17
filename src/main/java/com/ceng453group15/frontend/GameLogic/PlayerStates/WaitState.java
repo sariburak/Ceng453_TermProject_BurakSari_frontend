@@ -9,7 +9,7 @@ public class WaitState implements PlayerState {
         this.player = player;
     }
     @Override
-    public void throwDice() {
+    public void move(int amount) {
         System.out.println("Not your turn yet");
     }
 

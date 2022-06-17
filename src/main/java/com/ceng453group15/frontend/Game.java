@@ -1,24 +1,20 @@
 package com.ceng453group15.frontend;
 
-import com.ceng453group15.frontend.GameLogic.Player;
-import com.ceng453group15.frontend.GameLogic.Property;
-import com.ceng453group15.frontend.GameLogic.PropertyType;
-import com.ceng453group15.frontend.GameLogic.Tile;
+import com.ceng453group15.frontend.GameLogic.*;
 import com.ceng453group15.frontend.GameLogic.TileActions.GoToJailAction;
 import com.ceng453group15.frontend.GameLogic.TileActions.PayTaxAction;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+//Using for creating the board
 public class Game {
-    private Player[] players;
     private int indexOfPayTax;
     private final int[] ferryIndices;
+
+    public TurnObject turnObject;
     public Game(){
         //Hardcoded to two players fow now;
-        players = new Player[2];
-        players[0] = new Player();
-        players[1] = new Player();
 
         ArrayList<Tile> tiles = new ArrayList<>();
         ArrayList<Boolean> assignedTiles = new ArrayList<>();
@@ -72,6 +68,13 @@ public class Game {
                 System.out.println("Call once for every property");
             }
         }
+
+        Board.initializeBoard(tiles);
+
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player());
+        players.add(new Player());
+        TurnObject.initializeTurnObject(players);
     }
 
     private int findAvailableSpaceRandomly(ArrayList<Boolean> spaces){

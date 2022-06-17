@@ -1,6 +1,7 @@
 package com.ceng453group15.frontend.GameLogic.PlayerStates;
 
 import com.ceng453group15.frontend.GameLogic.Player;
+import com.ceng453group15.frontend.GameLogic.TurnObject;
 
 //Player is  in jail
 public class JailState implements PlayerState{
@@ -12,7 +13,7 @@ public class JailState implements PlayerState{
         this.remainingTurnCount = 1;
     }
     @Override
-    public void throwDice() {
+    public void move(int amount) {
         System.out.println("You are in jail");
     }
 

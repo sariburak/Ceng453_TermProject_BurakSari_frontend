@@ -18,8 +18,8 @@ public class TurnObjectTest {
         players.add(player1);
         players.add(player2);
 
-        TurnObject turnObject = new TurnObject(players);
-        assertTrue(turnObject.getActivePlayer() == player1);
+        TurnObject.initializeTurnObject(players);
+        assertTrue(TurnObject.getActivePlayer() == player1);
     }
 
     @Test
@@ -31,14 +31,14 @@ public class TurnObjectTest {
         players.add(player1);
         players.add(player2);
 
-        TurnObject turnObject = new TurnObject(players);
+        TurnObject.initializeTurnObject(players);
 
-        assertTrue(turnObject.getActivePlayer() == player1);
+        assertTrue(TurnObject.getActivePlayer() == player1);
 
         //Shouldn't pass the turn
-        turnObject.nextTurn();
+        TurnObject.nextTurn();
 
-        assertTrue(turnObject.getActivePlayer() == player1);
+        assertTrue(TurnObject.getActivePlayer() == player1);
     }
 
     @Test
@@ -50,14 +50,14 @@ public class TurnObjectTest {
         players.add(player1);
         players.add(player2);
 
-        TurnObject turnObject = new TurnObject(players);
+        TurnObject.initializeTurnObject(players);
 
-        assertTrue(turnObject.getActivePlayer() == player1);
+        assertTrue(TurnObject.getActivePlayer() == player1);
 
         player1.setPlayerState(new WaitState(player1));
 
-        turnObject.nextTurn();
+        TurnObject.nextTurn();
 
-        assertTrue(turnObject.getActivePlayer() == player2);
+        assertTrue(TurnObject.getActivePlayer() == player2);
     }
 }

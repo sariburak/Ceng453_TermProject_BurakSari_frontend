@@ -14,13 +14,9 @@ public class OnTurnState implements PlayerState {
         this.player = player;
     }
     @Override
-    public void throwDice() {
-        Random rand = new Random();
+    public void move(int amount) {
 
-        //random number between 1-6
-        int dice = rand.nextInt(6) + 1;
-
-        int new_pos = (player.getCurrent_pos() + dice) % Board.getTilesCount();
+        int new_pos = (player.getCurrent_pos() + amount) % Board.getTilesCount();
 
         //Update player position
         player.setCurrent_pos(new_pos);

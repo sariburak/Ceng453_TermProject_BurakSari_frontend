@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TurnObject {
-    private List<Player> players;
-    private Player activePlayer;
-    public TurnObject(List<Player> players){
-        this.players = new ArrayList<>(players);
+    static private List<Player> players;
+    static private Player activePlayer;
+    public static void initializeTurnObject(List<Player> players){
+        TurnObject.players = new ArrayList<>(players);
         activePlayer = players.get(0);
         activePlayer.setPlayerState(new OnTurnState(activePlayer));
     }
 
     //Passes the turn to the next player
-    public void nextTurn(){
+    public static void nextTurn(){
         //TODO: Should be called unless all players are in jail or wait state
-        if(!(activePlayer.getPlayerState() instanceof WaitState)){
-            System.out.println("You can not call this function yet!");
+        /*if(!(activePlayer.getPlayerState() instanceof WaitState)){
+            System.out.println("Active player didn't finish their turn!");
             return;
-        }
+        }*/
         //Let turn pass to the next player
         //TODO: may be good to implement some mechanism to check all other players are in wait or jail
 
@@ -51,7 +51,11 @@ public class TurnObject {
         activePlayer.setPlayerState(new OnTurnState(activePlayer));
     }
 
-    public Player getActivePlayer() {
+    public static Player getActivePlayer() {
         return activePlayer;
+    }
+
+    public static int activePlayerIndex(){
+        return players.indexOf(activePlayer);
     }
 }

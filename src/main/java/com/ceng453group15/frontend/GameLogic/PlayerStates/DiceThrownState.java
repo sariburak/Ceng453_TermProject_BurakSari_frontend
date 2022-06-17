@@ -10,7 +10,7 @@ public class DiceThrownState implements PlayerState {
         this.player = player;
     }
     @Override
-    public void throwDice() {
+    public void move(int amount) {
         //TODO: implement to be able to throw dice multiple times
         System.out.println("Already thrown dice");
     }
