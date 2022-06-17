@@ -82,13 +82,14 @@ public class GameController {
         tiles = new Pane[]{start, city1, city2, city3, jail, city4, city5, city6, city7, city8,
             city9, city10, gotojail, city11, city12, city13
         };
+        setPlayer1Budget(1500);
+        setPlayer2Budget(1500);
     }
 
     public void mainPaneClicked(MouseEvent mouseEvent) {
         System.out.println("Mouse event on main pane is triggered");
 
-        movePlayer(player1, 10);
-        movePlayer(player2, 6);
+        //Below code is a demonstration of how to change city names
         /*for(Node node: pane04.getChildren()){
             Text text = (Text) node;
             System.out.println(text.getText());
@@ -123,5 +124,13 @@ public class GameController {
             }
         }
         return null;
+    }
+
+    private void setPlayer1Budget(int budget){
+        player1Budget.setText(String.valueOf(budget));
+    }
+
+    private void setPlayer2Budget(int budget){
+        player2Budget.setText(String.valueOf(budget));
     }
 }
