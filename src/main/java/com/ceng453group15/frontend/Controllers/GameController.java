@@ -1,6 +1,7 @@
 package com.ceng453group15.frontend.Controllers;
 
 import com.ceng453group15.frontend.DiceAnimation;
+import com.ceng453group15.frontend.Game;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -71,9 +72,11 @@ public class GameController {
 
     private Pane[] tiles;
 
+    private Game game;
 
     public GameController(){
         System.out.println("Constructor called");
+        game = new Game();
     }
 
     @FXML
@@ -84,6 +87,18 @@ public class GameController {
         };
         setPlayer1Budget(1500);
         setPlayer2Budget(1500);
+
+        for(int index: game.getFerryIndices()){
+            Text text = getTextFromPane(tiles[index]);
+            text.setText("Ferry");
+            text.setLayoutX(45);
+            text.setLayoutY(36);
+        }
+
+        Text text = getTextFromPane(tiles[game.getIndexOfPayTax()]);
+        text.setText("Pay Tax");
+        text.setLayoutX(45);
+        text.setLayoutY(36);
     }
 
     public void mainPaneClicked(MouseEvent mouseEvent) {
