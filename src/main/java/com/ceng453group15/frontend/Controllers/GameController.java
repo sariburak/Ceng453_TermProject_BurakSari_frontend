@@ -128,7 +128,6 @@ public class GameController {
         budgets = new Text[2];
         budgets[0] = player1Budget;
         budgets[1] = player2Budget;
-        budgets[0].bind
     }
 
     @FXML
@@ -158,12 +157,12 @@ public class GameController {
             movePlayer(players[TurnObject.activePlayerIndex()], TurnObject.getActivePlayer().getCurrent_pos());
         }
 
-
-        budgets[TurnObject.activePlayerIndex()].setText(String.valueOf(TurnObject.getActivePlayer().getBudget()));
-
-
+        updateBudget();
     }
 
+    private void updateBudget(){
+        budgets[TurnObject.activePlayerIndex()].setText(String.valueOf(TurnObject.getActivePlayer().getBudget()));
+    }
     private void changeDiceImage(ImageView dice, int top){
         File f = new File("src/main/resources/images/Dice" + top + ".png");
         //System.out.println(f.toURI().toString());
@@ -195,6 +194,8 @@ public class GameController {
     @FXML
     public void buyProperty(ActionEvent event) {
         TurnObject.getActivePlayer().buyProperty();
+        updateBudget();
+        tiles[TurnObject.getActivePlayer().getCurrent_pos()].getStyleClass().add("player"+TurnObject.activePlayerIndex());
     }
 
     @FXML

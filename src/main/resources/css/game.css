@@ -5,6 +5,14 @@
     -fx-background-position: center;
 }
 
+.player0{
+    -fx-background-color: #ae0a0a;
+}
+
+.player1{
+    -fx-background-color: #399a13;
+}
+
 .set-background{
     -fx-background-color:  darkolivegreen;
 }
