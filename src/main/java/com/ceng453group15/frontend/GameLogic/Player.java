@@ -29,7 +29,11 @@ public class Player{
 
     public boolean buyProperty() {
         boolean success = playerState.buyProperty();
-        return playerState.buyProperty();
+        if(success){
+            //If that casting fails, some tile has been sold, which normally should not happen
+            ownedProperties.add((Property) Board.getTiles().get(current_pos));
+        }
+        return success;
     }
 
     public void increaseBudget(int increase){
@@ -61,5 +65,14 @@ public class Player{
 
     public void setCurrent_pos(int new_pos){
         this.current_pos = new_pos;
+    }
+
+    public int ownedFerryCount(){
+        int count = 0;
+        for(Property property: ownedProperties){
+            if(property.getType() == PropertyType.FERRY)
+                    count++;
+        }
+        return count;
     }
 }
