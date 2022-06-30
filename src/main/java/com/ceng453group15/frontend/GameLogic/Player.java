@@ -3,6 +3,8 @@ package com.ceng453group15.frontend.GameLogic;
 import com.ceng453group15.frontend.GameLogic.PlayerStates.PlayerState;
 import com.ceng453group15.frontend.GameLogic.PlayerStates.WaitState;
 
+import java.util.ArrayList;
+
 import static com.ceng453group15.frontend.GameLogic.GameConstants.DEFAULT_PLAYER_BUDGET;
 
 public class Player{
@@ -12,11 +14,13 @@ public class Player{
 
     private PlayerState playerState;
 
+    private ArrayList<Property> ownedProperties;
     public  Player(){
         current_pos = 0;
         budget = DEFAULT_PLAYER_BUDGET;
         //It's not any of the players' turn as default
         playerState = new WaitState(this);
+        ownedProperties = new ArrayList<>();
     }
 
     public void move(int amount) {
@@ -24,6 +28,7 @@ public class Player{
     }
 
     public boolean buyProperty() {
+        boolean success = playerState.buyProperty();
         return playerState.buyProperty();
     }
 
